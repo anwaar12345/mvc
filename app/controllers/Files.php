@@ -4,7 +4,7 @@ class Files extends Controller{
 
 public function __construct()
 {
-    echo "Files Page";
+    // echo "Files Page";
 
 }
 

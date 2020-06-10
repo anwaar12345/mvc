@@ -14,9 +14,9 @@ define('DB_NAME','mvcdb') ;
 //for urls
 define('APPROOT',dirname(dirname(__FILE__))) ;
 
-define('URLROOT','http://localhost/mvc/');
+define('URLROOT','http://localhost/taskapp');
 
-define('SITENAME', 'mvc');
+define('SITENAME', 'taskapp');
 
 
 

@@ -4,7 +4,7 @@ class About extends Controller{
 
 public function __construct()
 {
-     echo "About Page";
+    //  echo "About Page";
 }
 
 public function index(){

@@ -5,7 +5,10 @@ require_once APPROOT. '/views/inc/header.php';
 
 ?>
 
-<h1> <?php echo "About Page <br>"; ?> </h1>
+<div class="jumbotron jumbotron-flud mt-5">
+<p class="lead" >
+<h1> <?php echo "About Page <br>"; ?> </h1></p>
+</div>
 
 
 <?php
