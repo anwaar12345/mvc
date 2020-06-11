@@ -24,6 +24,22 @@ public function register($data)
         return false;
     }
 }
+//login
+
+public function login($email,$password)
+{
+$this->db->query('SELECT * FROM `users` where email = :email');
+$this->db->bind(':email',$email);
+$row = $this->db->single();
+$hashedPass = $row->password;    
+if(password_verify($password,$hashedPass)){
+ return $row;
+}else{
+    return false;
+}
+
+}
+
 
 
 public function findUserByEmail($email)

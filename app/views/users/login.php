@@ -10,7 +10,9 @@ require_once APPROOT. '/views/inc/header.php';
 <p><?php  flash('register_success');  ?></p>
 
 <h2  style="text-align:center"> Login Here </h2>
+<?php
 
+?>
 <form action="<?php echo URLROOT; ?>/users/login" method="post">
 
 <div class="form-group">
@@ -26,7 +28,7 @@ require_once APPROOT. '/views/inc/header.php';
 
 <div class="row mt-3">
 <div class="col">
-<input type="submit" value="Register" class="btn btn-success btn-block">
+<input type="submit" value="Login" class="btn btn-success btn-block">
 </div>
 <div class="col">
     <a href="<?php echo URLROOT; ?>/users/register" >Need An Account ?</a>

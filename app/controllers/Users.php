@@ -117,9 +117,25 @@ public function login()
     if(empty($data['password'])){
         $data['password_err'] = "Please insert Password";
     }
+    if($this->userModel->findUserByEmail($data['email'])){
+        
+    }else{
+        $data['email_err'] = "User Not Found";
+    }
+
 
    if(empty($data['name_err']) && empty($data['email_err'])){
-        die("success");
+        $userLogedIn = $this->userModel->login($data['email'],$data['password']);
+        if($userLogedIn){
+            //session will be maintain
+            $this->createSession($userLogedIn);
+            redirect('users/file');
+            exit;
+        }else{
+            $data['password_err'] = "Invalid Password";
+            $this->view('users/login',$data);     
+        }
+
    }else{
     //    print_r($data);exit;
        $this->view('users/login',$data);
@@ -127,7 +143,9 @@ public function login()
 
 
 
-    
+
+   
+
 
 
 
@@ -152,9 +170,22 @@ public function login()
 
 }
 
+public function createSession($user)
+{
+    $_SESSION['user_id'] = $user->id;
+    $_SESSION['email'] = $user->email;
+    $_SESSION['name'] = $user->name;
+   
+}
 
-
-
+public function logout()
+{
+ unset($_SESSION['user_id']);
+ unset($_SESSION['email']);
+ unset($_SESSION['name']);
+ session_destroy();
+ redirect('users/login');
+}
  }
 
 
