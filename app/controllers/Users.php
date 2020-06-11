@@ -62,6 +62,7 @@ public function register()
     
     //register user
     if($this->userModel->register($data)){
+        flash('register_success','You have Registered Successfully');
         redirect('users/login');
     }else{
         die("Some Errors Occured");
