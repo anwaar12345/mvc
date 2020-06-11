@@ -13,13 +13,13 @@ require_once APPROOT. '/views/inc/header.php';
 
 <div class="form-group">
 <label for="email">Email: <sup>*</sup></label>
-<input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'invalid' : ''; ?>" Required placeholder="Enter Your Email ..."  value="<?php echo $data['email']; ?>">
-<span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
+<input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"  placeholder="Enter Your Email ..."  value="<?php echo $data['email']; ?>" Required>
+<span class="text-danger"><?php echo $data['email_err']; ?></span>
 </div>
 <div class="form-group">
 <label for="password">Password: <sup>*</sup></label>
-<input type="password" name="password" class="form-control form-control-lg <?php echo (!empty($data['password_err'])) ? 'invalid' : ''; ?>" Required placeholder="Enter Your Password ..."  value="<?php echo $data['password']; ?>">
-<span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
+<input type="password" name="password" class="form-control form-control-lg <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>"  placeholder="Enter Your Password ..."  value="<?php echo $data['password']; ?>" Required>
+<span class="text-danger"><?php echo $data['password_err']; ?></span>
 </div>
 
 <div class="row mt-3">

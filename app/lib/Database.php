@@ -47,13 +47,13 @@ public function bind($params, $values, $type = null)
 {
     if(is_null($type)){
         switch(true){
-            case is_int($value):
+            case is_int($values):
                 $type = PDO::PARAM_INT;
                 break;
-                case is_bool($value):
+                case is_bool($values):
                 $type = PDO::PARAM_BOOL;
                 break;     
-                case is_null($value):
+                case is_null($values):
                 $type = PDO::PARAM_NULL;
                 break;    
                 default:
@@ -61,7 +61,7 @@ public function bind($params, $values, $type = null)
         }
 
     }
-    $this->stmt->bindValue($params, $value, $type);
+    $this->stmt->bindValue($params, $values, $type);
 
 }
 //execute the query
