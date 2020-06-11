@@ -19,6 +19,8 @@ public function register()
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
+        'profile' => $_FILES['profile']['name'],
+        'profile_move'=> $_FILES['profile']['tmp_name'],
         'name_err' => '',
         'email_err' => '',
         'password_err' => '',
@@ -54,12 +56,23 @@ public function register()
         }
     }
 
-   if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirmpass_err'])){
-        
+    if(empty($data['profile'])){
+        $data['profile_err'] = "Please Upload Profile Picture";
+    }
+
+    // echo '../../';
+    // print_r($data);exit;
+    // $root = 
+   if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirmpass_err']) && empty($data['profile_err'])){
+    $location = 'uploads/'.$data['profile'];
+    if(move_uploaded_file($data['profile_move'],$location)){
+        echo "moved";
+    }else{
+        echo "failed";
+    }   
     //hash  the password
 
     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-    
     //register user
     if($this->userModel->register($data)){
         flash('register_success','You have Registered Successfully');
@@ -82,6 +95,8 @@ public function register()
         'email' => '',
         'password' => '',
         'confirm_password' => '',
+        'profile' => '',
+        'profile_err' => '',
         'name_err' => '',
         'email_err' => '',
         'password_err' => '',
@@ -129,8 +144,6 @@ public function login()
         if($userLogedIn){
             //session will be maintain
             $this->createSession($userLogedIn);
-            redirect('users/file');
-            exit;
         }else{
             $data['password_err'] = "Invalid Password";
             $this->view('users/login',$data);     
@@ -175,7 +188,7 @@ public function createSession($user)
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
-   
+    redirect('about');
 }
 
 public function logout()
@@ -186,6 +199,17 @@ public function logout()
  session_destroy();
  redirect('users/login');
 }
+
+public function isLoggedIn()
+{
+    if(isset($_SESSION['user_id'])){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
  }
 
 

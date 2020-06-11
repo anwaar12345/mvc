@@ -6,10 +6,10 @@ require_once APPROOT. '/views/inc/header.php';
 
 <div class="row">
 <div class="col-md-6 mx-auto">
-<div class="card card-body bg-light mt-5">
+<div class="card card-body bg-light mt-3">
 <h2  style="text-align:center"> Create An Account </h2>
 <p  style="text-align:center">Please Enter Required Information To Register as a User</p>
-<form action="<?php echo URLROOT; ?>/users/register" method="post">
+<form action="<?php echo URLROOT; ?>/users/register" method="post" enctype="multipart/form-data">
 <div class="form-group">
 
 <label for="name">Name: <sup>*</sup></label>
@@ -29,6 +29,10 @@ require_once APPROOT. '/views/inc/header.php';
 <label for="cpassword">Confirm Password: <sup>*</sup></label>
 <input type="password" name="confirm_password" class="form-control form-control-lg <?php echo (!empty($data['confirmpass_err'])) ? 'is-invalid' : ''; ?>" placeholder="Please Confirm Your Password ..."  value="<?php echo $data['confirm_password']; ?>" Required>
 <span class="text-danger"><?php echo $data['confirmpass_err']; ?></span>
+
+<label for="profile" class="mt-3">Profile Picture: <sup>*</sup></label>
+<input type="file" name="profile" class="form-control-file form-control-lg <?php echo (!empty($data['profile_err'])) ? 'is-invalid' : ''; ?>"   value="<?php echo $data['profile']; ?>" Required>
+<span class="text-danger"><?php echo $data['profile_err']; ?></span>
 
 <div class="row mt-3">
 <div class="col">

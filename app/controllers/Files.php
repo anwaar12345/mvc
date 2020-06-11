@@ -11,7 +11,7 @@ public function __construct()
 public function index(){
 
     $data = [
-        'title' => 'The Posts Page',
+        'title' => $_SESSION['name'],
        
     ];
     $this->view('hello',$data);
