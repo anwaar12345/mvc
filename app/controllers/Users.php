@@ -35,20 +35,21 @@ public function register()
     if(empty($data['password'])){
         $data['password_err'] = "Please insert Password";
     }elseif(strlen($data['password']) < 6 ){
-        $data['password_err'] = "Password Should be Atr Least 6 Characters";
+        $data['password_err'] = "Password Should be At Least 6 Characters";
     }
 
     if(empty($data['confirm_password'])){
         $data['confirmpass_err'] = "Please Enter Confirm Password value";
     }else{
         if($data['password']!=$data['confirm_password']){
-            $data['confirmpass_err'] = "Passwords Dont Match";
+            $data['confirmpass_err'] = "Passwords Do not Match";
         }
     }
 
-   if(empty($data['name_err']) && empty($data['email_err']) && $data['password_err'] && $data['confirmpass_err']){
-       die('success');
+   if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirmpass_err'])){
+        die("success");
    }else{
+    //    print_r($data);exit;
        $this->view('users/register',$data);
    }
 
