@@ -1,35 +1,58 @@
-
-    <?php
+<?php
 
 require_once APPROOT. '/views/inc/header.php';
 
 ?>
 
-<div class="jumbotron">
-<p class="lead" >
-<h1> <?php echo "$data[Tasks] Page <br>"; ?> </h1></p>
+<div class="row">
+<div class="col-md-6 mx-auto">
+<div class="card card-body bg-light mt-3">
+<h2  style="text-align:center"> Add Tasks </h2>
+<p  style="text-align:center">Kindly Enter Task Details </p>
+<form action="<?php echo URLROOT; ?>/users/register" method="post" enctype="multipart/form-data">
+<div class="form-group">
 
-<div class="container">
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+<label for="name">Name: <sup>*</sup></label>
+<input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" name="user_id">
+
+<input type="text" name="title" class="form-control form-control-lg <?php echo (!empty($data['title_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Task Title ..." value="<?php echo $data['name']; ?>" Required>
+<span class="text-danger"><?php echo $data['name_err']; ?></span>
+</div>
+<div class="form-group">
+<label for="email">Email: <sup>*</sup></label>
+<input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"  placeholder="Enter Your Email ..."  value="<?php echo $data['email']; ?>" Required>
+<span class="text-danger"><?php echo $data['email_err']; ?></span>
+</div>
+<div class="form-group">
+<label for="password">Password: <sup>*</sup></label>
+<input type="password" name="password" class="form-control form-control-lg <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Your Password ..."  value="<?php echo $data['password']; ?>" Required>
+<span class="text-danger"><?php echo $data['password_err']; ?></span>
+</div>
+<label for="cpassword">Confirm Password: <sup>*</sup></label>
+<input type="password" name="confirm_password" class="form-control form-control-lg <?php echo (!empty($data['confirmpass_err'])) ? 'is-invalid' : ''; ?>" placeholder="Please Confirm Your Password ..."  value="<?php echo $data['confirm_password']; ?>" Required>
+<span class="text-danger"><?php echo $data['confirmpass_err']; ?></span>
+
+<label for="profile" class="mt-3">Profile Picture: <sup>*</sup></label>
+<input type="file" name="profile" class="form-control-file form-control-lg <?php echo (!empty($data['profile_err'])) ? 'is-invalid' : ''; ?>"   value="<?php echo $data['profile']; ?>" Required>
+<span class="text-danger"><?php echo $data['profile_err']; ?></span>
+
+<div class="row mt-3">
+<div class="col">
+<input type="submit" value="Register" class="btn btn-success btn-block">
+</div>
+<div class="col">
+    <a href="<?php echo URLROOT; ?>/users/login" >Already Have Account ?</a>
+</div>
+</div>
+
+</div>
+
+
 </form>
-</div>
 
 </div>
-
+</div>
+</div>
 
 <?php
 
