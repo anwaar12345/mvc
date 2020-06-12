@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 mt-3">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 mt-3" style="vertical-align: center;">
   <a class="navbar-brand" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,16 @@
       <?php
       if(isset($_SESSION['user_id'])){
     ?>
-      <li class="nav-item">
+      <li class="nav-item  active">
+        <a class="nav-link" href="<?php echo URLROOT; ?>/tasks">Tasks</a>
+      </li>
+    <?php  
+      }
+      ?>
+      <?php
+      if(isset($_SESSION['user_id'])){
+    ?>
+      <li class="nav-item  active">
         <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
       </li>
     <?php  
@@ -32,6 +41,7 @@
      <?php  
       }
       ?>
+  
     </ul>
     
   </div>

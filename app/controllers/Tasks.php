@@ -9,20 +9,43 @@ public function __construct()
             redirect('users/login');
         }
 
+        $this->postModel = $this->model('Task');
 
 
 }
 
 public function index(){
 
+    $tasks = $this->postModel->getTasks();
+    
     $data = [
-        'title' => $_SESSION['name'],
-       
+        'tasks' => $tasks,    
     ];
-    $this->view('hello',$data);
+    $this->view('tasks',$data);
 
 }
 
+public function edit($id)
+{
+   
+die($id);
+
+
+}
+
+public function add()
+{
+
+$data = [
+
+'Tasks' => 'Task Add Page',
+
+];
+
+    $this->view('add',$data);
+
+
+}
 
 }
 

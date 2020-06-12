@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 
 <?php
 
