@@ -5,6 +5,12 @@ class Tasks extends Controller{
 public function __construct()
 {
     // echo "Files Page";
+        if(!isLoggedIn()){
+            redirect('users/login');
+        }
+
+
+
 }
 
 public function index(){
