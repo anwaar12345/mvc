@@ -9,39 +9,62 @@ require_once APPROOT. '/views/inc/header.php';
 <div class="card card-body bg-light mt-3">
 <h2  style="text-align:center"> Add Tasks </h2>
 <p  style="text-align:center">Kindly Enter Task Details </p>
-<form action="<?php echo URLROOT; ?>/users/register" method="post" enctype="multipart/form-data">
+<form action="<?php echo URLROOT; ?>/tasks/add" method="post" enctype="multipart/form-data">
 <div class="form-group">
 
-<label for="name">Name: <sup>*</sup></label>
-<input type="hidden" value="<?php echo $_SESSION['user_id']; ?>" name="user_id">
+<label for="title">Task Title: <sup>*</sup></label>
+<input type="hidden" name='uid' value="<?php echo $_SESSION['user_id']; ?>" name="user_id">
 
-<input type="text" name="title" class="form-control form-control-lg <?php echo (!empty($data['title_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Task Title ..." value="<?php echo $data['name']; ?>" Required>
-<span class="text-danger"><?php echo $data['name_err']; ?></span>
+<input type="text" name="title" class="form-control form-control-lg <?php echo (!empty($data['title_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Task Title ..." value="<?php echo $data['title']; ?>" Required>
+<span class="text-danger"><?php echo $data['title_err']; ?></span>
 </div>
 <div class="form-group">
-<label for="email">Email: <sup>*</sup></label>
-<input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>"  placeholder="Enter Your Email ..."  value="<?php echo $data['email']; ?>" Required>
-<span class="text-danger"><?php echo $data['email_err']; ?></span>
+<label for="status">Status: <sup>*</sup></label>
+<select name="status" class="form-control" Required>
+<option value="Dummy"? Required>Dummy</option>
+</select>
+<span class="text-danger"><?php echo $data['status_err']; ?></span>
 </div>
 <div class="form-group">
-<label for="password">Password: <sup>*</sup></label>
-<input type="password" name="password" class="form-control form-control-lg <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Your Password ..."  value="<?php echo $data['password']; ?>" Required>
-<span class="text-danger"><?php echo $data['password_err']; ?></span>
+<label for="desc">Description: <sup>*</sup></label>
+<textarea name="descrip" Required cols="30" rows="5" class="form-control form-control-lg <?php echo (!empty($data['descrip_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Task Description ..."  style="resize:none;"><?php echo $data['descrip']; ?></textarea>
+
+<span class="text-danger"><?php echo $data['descrip_err']; ?></span>
+<br>
 </div>
-<label for="cpassword">Confirm Password: <sup>*</sup></label>
-<input type="password" name="confirm_password" class="form-control form-control-lg <?php echo (!empty($data['confirmpass_err'])) ? 'is-invalid' : ''; ?>" placeholder="Please Confirm Your Password ..."  value="<?php echo $data['confirm_password']; ?>" Required>
-<span class="text-danger"><?php echo $data['confirmpass_err']; ?></span>
-
-<label for="profile" class="mt-3">Profile Picture: <sup>*</sup></label>
-<input type="file" name="profile" class="form-control-file form-control-lg <?php echo (!empty($data['profile_err'])) ? 'is-invalid' : ''; ?>"   value="<?php echo $data['profile']; ?>" Required>
-<span class="text-danger"><?php echo $data['profile_err']; ?></span>
-
+<div class="form-group">
+<label for="workhr">Work Hour ( Duration To Complete ): <sup>*</sup></label>
+<input type="text" name="workhr" Required class="form-control form-control-lg <?php echo (!empty($data['workhr_err'])) ? 'is-invalid' : ''; ?>" placeholder="Please Provide Duration of Task ..."  value="<?php echo $data['workhr']; ?>" >
+<span class="text-danger"><?php echo $data['workhr_err']; ?></span>
+</div>
+<br>
+<div class="form-group">
+<label for="created_by" class="mt-3">created By: <sup>*</sup></label>
+<input type="text" name="crby" Required class="form-control form-control-lg <?php echo (!empty($data['crby_err'])) ? 'is-invalid' : ''; ?>"   value="<?php echo $data['crby']; ?>"  placeholder="Please Enter Author Name ...">
+<span class="text-danger"><?php echo $data['crby_err']; ?></span>
+</div>
+<br>
+<div class="form-group">
+<label for="created_by" class="mt-3">Priority: <sup>*</sup></label>
+<input type="text" name="priority" Required class="form-control form-control-lg <?php echo (!empty($data['priority_err'])) ? 'is-invalid' : ''; ?>"   value="<?php echo $data['priority']; ?>"  placeholder="Please Enter Task Priority ...">
+<span class="text-danger"><?php echo $data['priority_err']; ?></span>
+</div>
+<br>
+<div class="form-group">
+<label for="created_by" class="mt-3">Attachment: <sup>*</sup></label>
+<input type="file" name="attachment" Required class="form-control-file form-control-lg <?php echo (!empty($data['attachment_err'])) ? 'is-invalid' : ''; ?>"   value="<?php echo $data['attachment']; ?>" >
+<span class="text-danger"><?php echo $data['attachment_err']; ?></span>
+</div>
+<br>
 <div class="row mt-3">
 <div class="col">
-<input type="submit" value="Register" class="btn btn-success btn-block">
+<input type="submit" value="Submit Task" class="btn btn-success btn-block">
+</div>
+<div class="col" style="">
+    <a href="<?php echo URLROOT; ?>/tasks/add" class="btn btn-primary btn-block">Clear Form</a>
 </div>
 <div class="col">
-    <a href="<?php echo URLROOT; ?>/users/login" >Already Have Account ?</a>
+    <a href="<?php echo URLROOT; ?>/tasks" class="btn btn-danger btn-block">Cancel</a>
 </div>
 </div>
 

@@ -1,5 +1,5 @@
 <?php
-
+// error_reporting(0);
 class Tasks extends Controller{
 
 public function __construct()
@@ -9,14 +9,14 @@ public function __construct()
             redirect('users/login');
         }
 
-        $this->postModel = $this->model('Task');
+        $this->taskModel = $this->model('Task');
 
 
 }
 
 public function index(){
 
-    $tasks = $this->postModel->getTasks();
+    $tasks = $this->taskModel->getTasks();
     
     $data = [
         'tasks' => $tasks,    
@@ -25,11 +25,24 @@ public function index(){
 
 }
 
-public function edit($id)
+public function details($id)
 {
-   
-die($id);
+   die($id);
 
+
+}
+
+public function delete($id)
+{
+
+    if($this->taskModel->deleteTask($id)) {
+
+        flash('Task_removed','You have Deleted Task Successfully');
+        redirect('tasks');
+        
+    }else{
+        die("Some Thing Went Wrong");
+    }
 
 }
 
@@ -42,65 +55,68 @@ public function add()
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
     $data = [
-        'name' => trim($_POST['name']),
-        'email' => trim($_POST['email']),
-        'password' => trim($_POST['password']),
-        'confirm_password' => trim($_POST['confirm_password']),
-        'profile' => $_FILES['profile']['name'],
-        'profile_move'=> $_FILES['profile']['tmp_name'],
-        'name_err' => '',
-        'email_err' => '',
-        'password_err' => '',
-        'confirmpass_err' => ''
+        'uid' => trim($_POST['uid']),
+        'title' => trim($_POST['title']),
+        'status' => trim($_POST['status']),
+        'descrip' => trim($_POST['descrip']),
+        'workhr' => trim($_POST['workhr']),
+        'crby' => trim($_POST['crby']),
+        'priority' => trim($_POST['priority']),
+        'attachment' => $_FILES['attachment']['name'],
+        'attachment_move' => $_FILES['attachment']['tmp_name'],
+        'title_err' => '',
+        'status_err' => '',
+        'descrip_err' => '',
+        'workhr_err' => '',
+        'crby_err' => '',
+        'priority_err' => '',
+        'attachment_err' => ''
     ];
-
+// print_r($data['workhr_err']);exit;
     //validation
-    if(empty($data['name'])){
-        $data['name_err'] = "Please insert Name";
-    }
-    if(empty($data['email'])){
-        $data['email_err'] = "Please insert Email";
-    }else{
-        // for checking Email Exists or not
-        if($this->userModel->findUserByEmail($data['email'])){
-            $data['email_err'] = "Email Already Exists";
-            
-        }
-
+    if(empty($data['title'])){
+        $data['title_err'] = "Please insert task Title";
     }
     
-    if(empty($data['password'])){
-        $data['password_err'] = "Please insert Password";
-    }elseif(strlen($data['password']) < 6 ){
-        $data['password_err'] = "Password Should be At Least 6 Characters";
+    if(empty($data['status'])){
+        $data['status_err'] = "Please Select Status";
     }
 
-    if(empty($data['confirm_password'])){
-        $data['confirmpass_err'] = "Please Enter Confirm Password value";
-    }else{
-        if($data['password']!=$data['confirm_password']){
-            $data['confirmpass_err'] = "Passwords Do not Match";
-        }
+    if(empty($data['descrip'])){
+        $data['descrip_err'] = "Please Provide Description for Task";
     }
 
-    if(empty($data['profile'])){
-        $data['profile_err'] = "Please Upload Profile Picture";
+    if(empty($data['workhr'])){
+        $data['workhr_err'] = "Please Provide Work Hour";
     }
 
-    // echo '../../';
+
+    if(empty($data['crby'])){
+        $data['crby_err'] = "Please Provide Author Name";
+    }
+
+    if(empty($data['priority'])){
+        $data['priority_err'] = "Please Tell Priority";
+    }
+
+
+    if(empty($data['attachment'])){
+        $data['attachment_err'] = "Please Upload Attachment";
+    }
+
+
+    // // echo '../../';
     // print_r($data);exit;
-    // $root = 
-    $location = dirname(APPROOT)."\public\images"."\\$data[profile]";
-    if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirmpass_err']) && empty($data['profile_err']) && move_uploaded_file($data['profile_move'],$location)){
-    
-     
-    //hash  the password
+    // // $root = 
+    $location = dirname(APPROOT)."\public\images"."\\$data[attachment]";
 
-    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    
+    if(empty($data['title_err']) && empty($data['status_err']) && empty($data['descrip_err']) && empty($data['workhr_err']) && empty($data['crby_err']) && empty($data['priority_err']) && empty($data['attachment_err']) && move_uploaded_file($data['attachment_move'],$location)){
+
     //register user
-    if($this->userModel->register($data)){
-        flash('register_success','You have Registered Successfully');
-        redirect('users/login');
+    if($this->taskModel->saveTask($data)){
+        flash('Task_added','You have Added Task Successfully');
+        redirect('tasks');
     }else{
         die("Some Errors Occured");
     }
@@ -116,16 +132,23 @@ public function add()
    }else{
        
     $data = [
-        'name' => '',
-        'email' => '',
-        'password' => '',
-        'confirm_password' => '',
+        'uid' => '',
+        'title' => '',
+        'status' => '',
+        'descrip' => '',
+        'workhr' => '',
         'profile' => '',
+        'crby' => '',
+        'priority' => '',
+        'attachment' => '',
         'profile_err' => '',
-        'name_err' => '',
-        'email_err' => '',
-        'password_err' => '',
-        'confirmpass_err' => ''
+        'title_err' => '',
+        'status_err' => '',
+        'descrip_err' => '',
+        'workhr_err' => '',
+        'crby_err' =>'', 
+        'priority_err' => '',
+        'attachment_err' => ''
     ];
 
     $this->view('add',$data);

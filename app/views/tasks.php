@@ -10,6 +10,8 @@
 <div class="mb-3 bg-dark">
 
 <div style="padding:10px;">
+<p><?php  flash('Task_added');  ?></p>
+<p><?php  flash('Task_removed');  ?></p>
 <a href="<?php echo URLROOT;?>/tasks/add" class="btn btn-success">Add Tasks</a>
 </div>
 <table class="table table-dark">
@@ -39,20 +41,16 @@
       <td><?php echo $task->priority; ?></td>
       <td><img src="public/images/<?php echo $task->attachment;?>" style="width:100px;"></td>
       <td><?php echo $task->created_at; ?> </td>
-       <td> <a href="<?php echo URLROOT; ?>/tasks/edit/<?php echo $task->id; ?>"> <i class="fa fa-edit"></i></a><a href="<?php echo URLROOT; ?>/tasks/delete/<?php echo $task->id; ?>"> <i class="fa fa-trash"></i></a> </td> 
+      <td> <a href="<?php echo URLROOT; ?>/tasks/details/<?php echo $task->id; ?>"> <i class="fa fa-eye" style="color:white; font-size:25px; margin:5px;"></i></a> <a href="<?php echo URLROOT; ?>/tasks/edit/<?php echo $task->id; ?>"> <i class="fa fa-edit" style="color:white; font-size:25px; margin:5px;"></i></a><a href="<?php echo URLROOT; ?>/tasks/delete/<?php echo $task->id; ?>"> <i class="fa fa-trash" style="color:white; font-size:25px; margin:5px;"></i></a> </td> 
     </tr>
- 
-
 <?php
 }
 ?>
+
  </tbody>
 </table>
 
 </div>
-
-
-
 
 <?php
 
