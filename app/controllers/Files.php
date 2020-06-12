@@ -5,7 +5,6 @@ class Files extends Controller{
 public function __construct()
 {
     // echo "Files Page";
-
 }
 
 public function index(){

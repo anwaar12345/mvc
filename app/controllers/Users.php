@@ -63,13 +63,10 @@ public function register()
     // echo '../../';
     // print_r($data);exit;
     // $root = 
-   if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirmpass_err']) && empty($data['profile_err'])){
-    $location = 'uploads/'.$data['profile'];
-    if(move_uploaded_file($data['profile_move'],$location)){
-        echo "moved";
-    }else{
-        echo "failed";
-    }   
+    $location = dirname(APPROOT)."\public\images"."\\$data[profile]";
+    if(empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirmpass_err']) && empty($data['profile_err']) && move_uploaded_file($data['profile_move'],$location)){
+    
+     
     //hash  the password
 
     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
