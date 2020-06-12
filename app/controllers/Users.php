@@ -185,7 +185,7 @@ public function createSession($user)
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
-    redirect('about');
+    redirect('files');
 }
 
 public function logout()
