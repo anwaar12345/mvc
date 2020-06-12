@@ -1,6 +1,6 @@
 <?php
 
-class Files extends Controller{
+class Tasks extends Controller{
 
 public function __construct()
 {

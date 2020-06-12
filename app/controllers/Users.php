@@ -5,6 +5,7 @@
 public function __construct()
 {
     $this->userModel = $this->model('User');
+    
 }
 
 public function register()
@@ -185,7 +186,7 @@ public function createSession($user)
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
-    redirect('files');
+    redirect('tasks');
 }
 
 public function logout()
