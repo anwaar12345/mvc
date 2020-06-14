@@ -16,6 +16,7 @@ public function __construct()
 
 public function index(){
 
+   
     $tasks = $this->taskModel->getTasks();
     
     $data = [

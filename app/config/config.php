@@ -16,7 +16,7 @@ define('APPROOT',dirname(dirname(__FILE__))) ;
 
 define('URLROOT','http://localhost/taskapp');
 
-define('SITENAME', 'taskapp');
+define('SITENAME', 'Taskapp');
 
 
 

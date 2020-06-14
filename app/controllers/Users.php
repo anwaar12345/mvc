@@ -10,6 +10,13 @@ public function __construct()
 
 public function register()
 {
+
+
+    if(isLoggedIn()){
+        redirect('Tasks');
+    }
+
+
    //check for post request
    if($_SERVER['REQUEST_METHOD']== 'POST'){
 
@@ -111,7 +118,14 @@ public function register()
 
 public function login()
 {
-   //check for post request
+ 
+    if(isLoggedIn()){
+        redirect('Tasks');
+    }
+
+ 
+ 
+    //check for post request
    if($_SERVER['REQUEST_METHOD']== 'POST'){
 
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -186,7 +200,12 @@ public function createSession($user)
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
+  if($user->role==1){
+    redirect('admin');
+  }elseif($user->role==2){
     redirect('tasks');
+  }
+    
 }
 
 public function logout()
