@@ -197,10 +197,13 @@ public function login()
 
 public function createSession($user)
 {
+    // print_r($user->role);exit;
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
-  if($user->role==1){
+    $_SESSION['role'] = $user->role;
+    $_SESSION['islead'] = $user->islead;
+    if($user->role==1){
     redirect('admin');
   }elseif($user->role==2){
     redirect('tasks');
@@ -213,6 +216,8 @@ public function logout()
  unset($_SESSION['user_id']);
  unset($_SESSION['email']);
  unset($_SESSION['name']);
+ unset($_SESSION['role']);
+ unset($_SESSION['islead']);
  session_destroy();
  redirect('users/login');
 }

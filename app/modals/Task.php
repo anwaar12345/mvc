@@ -8,12 +8,40 @@ class Task{
         $this->db = new Database;
     }
 
-public function getTasks()
+public function getTasksall()
 {
     $this->db->query('SELECT * FROM `posts`');
     $results = $this->db->resultSet();
     return $results;
 }
+
+
+public function getUserTasks($user_id)
+{
+    $this->db->query("SELECT * FROM `posts` where user_id='$user_id'");
+    $results = $this->db->resultSet();
+    return $results;
+}
+
+public function getSingleTask($id)
+{
+    $this->db->query("SELECT * FROM `posts` where id='$id'");
+    $results = $this->db->single();
+    return $results;
+}
+
+
+
+
+public function viewTask($id)
+{
+    $this->db->query("SELECT * FROM `posts` where id='$id'");
+    $results = $this->db->resultSet();
+    return $results;
+    
+}
+
+
 
 public function saveTask($data)
 {
