@@ -12,6 +12,7 @@
 <div style="padding:10px;">
 <p><?php  flash('Task_added');  ?></p>
 <p><?php  flash('Task_removed');  ?></p>
+<p><?php  flash('Task_edited');  ?></p>
 <?php  if($_SESSION['islead']==TRUE OR $_SESSION['role']==1){
 
 ?>

@@ -128,10 +128,10 @@ public function edit($id)
     
         
         if(empty($data['title_err']) && empty($data['status_err']) && empty($data['descrip_err']) && empty($data['workhr_err']) && empty($data['crby_err']) && empty($data['priority_err']) && empty($data['attachment_err']) && move_uploaded_file($data['attachment_move'],$location)){
-            print_r($data);exit;
+            // print_r($data);exit;
         //register user
         if($this->taskModel->updateTask($data)){
-            flash('Task_added','You have Added Task Successfully');
+            flash('Task_edited','You have Updated Task Successfully');
             redirect('tasks');
         }else{
             die("Some Errors Occured");

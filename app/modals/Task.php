@@ -72,7 +72,13 @@ public function deleteTask($id)
         return false;
     }
 }
+
+public function updateTask($data)
+{
+
+}
     
 }
+
 
 ?>
