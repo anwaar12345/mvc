@@ -13,15 +13,15 @@ require_once APPROOT. '/views/inc/header.php';
 <div class="form-group">
 
 <label for="title">Task Title: <sup>*</sup></label>
-<input type="hidden" name='id' value="<?php echo $data['id']; ?>" name="id">
-
+<input type="hidden" name='id' value="<?php echo $data['id']; ?>">
+<input type="hidden" name='uid' value="<?php echo $data['uid']; ?>" >
 <input type="text" name="title" class="form-control form-control-lg <?php echo (!empty($data['title_err'])) ? 'is-invalid' : ''; ?>" placeholder="Enter Task Title ..." value="<?php echo $data['title']; ?>" Required>
 <span class="text-danger"><?php echo $data['title_err']; ?></span>
 </div>
 <div class="form-group">
 <label for="status">Status: <sup>*</sup></label>
 <select name="status" class="form-control" Required>
-<option>d</option>
+<option value="d">d</option>
 <option value="dummy" <?php if($data['status']===$data['status']) echo "selected";  ?> Required>Dummy</option>
 
 </select>

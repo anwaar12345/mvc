@@ -72,6 +72,7 @@ public function edit($id)
     
         $data = [
             'id' => trim($_POST['id']),
+            'uid' => trim($_POST['uid']),
             'title' => trim($_POST['title']),
             'status' => trim($_POST['status']),
             'descrip' => trim($_POST['descrip']),
@@ -150,6 +151,7 @@ public function edit($id)
           
         $data = [
             'id' => $data->id,
+            'uid' => $data->user_id,
             'title' => $data->title,
             'status' => $data->status,
             'descrip' => $data->descrip,
@@ -165,7 +167,7 @@ public function edit($id)
             'priority_err' => '',
             'attachment_err' => ''
         ];
-    
+
        $this->view('edit',$data);
     
     

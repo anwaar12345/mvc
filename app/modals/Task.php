@@ -75,7 +75,21 @@ public function deleteTask($id)
 
 public function updateTask($data)
 {
-
+    $this->db->query('UPDATE `posts` SET `user_id`=:uid,`title`=:title,`status`=:status,`descrip`=:descrip,`duration`=:workhr,`created_by`=:crby,`priority`=:priority,`attachment`=:attachment WHERE id=:id');
+    $this->db->bind(':id',$data['id']);
+    $this->db->bind(':uid',$data['uid']);    
+    $this->db->bind(':title',$data['title']);
+    $this->db->bind(':status',$data['status']);
+    $this->db->bind(':descrip',$data['descrip']);
+    $this->db->bind(':workhr',$data['workhr']);
+    $this->db->bind(':crby',$data['crby']);
+    $this->db->bind(':priority',$data['priority']);
+    $this->db->bind(':attachment',$data['attachment']);
+    if($this->db->execute()){
+        return true;
+    }else{
+        return false;
+    }
 }
     
 }
