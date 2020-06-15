@@ -21,8 +21,8 @@ require_once APPROOT. '/views/inc/header.php';
 <div class="form-group">
 <label for="status">Status: <sup>*</sup></label>
 <select name="status" class="form-control" Required>
-<option value="d">d</option>
-<option value="dummy" <?php if($data['status']===$data['status']) echo "selected";  ?> Required>Dummy</option>
+<option value="d" <?php if($data['status']==="d") echo "selected";?>>d</option>
+<option value="dummy" <?php if($data['status']==="dummy") echo "selected";  ?> Required>Dummy</option>
 
 </select>
 <span class="text-danger"><?php echo $data['status_err']; ?></span>
