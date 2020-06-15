@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2020 at 03:21 PM
+-- Generation Time: Jun 15, 2020 at 07:35 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -36,8 +36,37 @@ CREATE TABLE `posts` (
   `duration` varchar(255) NOT NULL,
   `created_by` varchar(255) NOT NULL,
   `priority` varchar(255) NOT NULL,
-  `attachment` varchar(255) NOT NULL
+  `attachment` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_id`, `title`, `status`, `descrip`, `duration`, `created_by`, `priority`, `attachment`, `created_at`) VALUES
+(16, 34, 'task edit show now', 'd', 'dvdvccxdfdsszx ddd', '`dfvdf d', '`fvv d', 'high', 'APITESTING_TESTING_last_time_check_without_images11.PNG', '2020-06-14 21:36:54'),
+(17, 34, 'd', 'dummy', 'n', 'v', 'vcv', 'c', 'AdminPostUpdate0.PNG', '2020-06-14 22:51:50'),
+(18, 35, 'ds', 'd', 'nsds', '12', 'vcvsss', 'ssss', 'APITESTING_TESTING_last_time_check_without_images12.jpg', '2020-06-15 01:10:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`) VALUES
+(1, 'admin'),
+(2, 'user');
 
 -- --------------------------------------------------------
 
@@ -52,21 +81,17 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `profile` varchar(255) NOT NULL DEFAULT 'images.jpg',
   `islead` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `role` int(11) DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile`, `islead`, `created_at`) VALUES
-(23, 'rfftr', 'a@s', '$2y$10$.YeRe93.1bPFsDZjde86NOZddjZgYEzShgLlrYwoVRSPzaa5isxF.', 'download.jfif', 0, '2020-06-11 16:48:41'),
-(24, 'Syed Anwar Ahmed Shah', 'syed.anwar@nextgeni.dev', '$2y$10$UQamImdN3E.ZN4TsUL1.MeMUOdQIJtRq4TRuBPBrd2A0QcDZegmze', 'pak.png', 0, '2020-06-11 17:34:40'),
-(25, 'Syed Anwar Ahmed Shah', 's@1', '$2y$10$uXFlO1f4HVrNg7MiJw.n5.brdwUDJ2lROUFgnf9clrn6IWMPervtW', 'pak.png', 0, '2020-06-11 17:39:14'),
-(26, 'khan', 'k@kq', '$2y$10$dW9MHNv/W5sokc6Im8FKA.SAO1ZYbot904b1MJMSC/MKB0hIclggS', 'pak.png', 0, '2020-06-11 17:43:18'),
-(27, 'Syed Anwar Ahmed Shah', 'syed.anwar@nextgeni.devssxc', '$2y$10$q2tl4stCbqRqPtT9Rgk5/Op3MbHRK2j7LIk0B3.72TujZL.nSgFZi', 'pak.png', 0, '2020-06-11 17:45:15'),
-(28, 'k', 'k@k2w', '$2y$10$P99GoiUbq0WBezVRZ0SvDeH4TaNz8v8C2W8ODioh823JVSLoI1u6y', 'pak.png', 0, '2020-06-11 17:52:35'),
-(29, 'khan', 'asas@w', '$2y$10$qzwxrDdiRKtQ6ck4PTnHJeqQS9EoWL9zW74iGbTvP9egSSuPCrLQG', 'pak.png', 0, '2020-06-11 17:54:31');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile`, `islead`, `created_at`, `role`) VALUES
+(34, 'Syed Anwar Ahmed Shah', 'syed.anwar@nextgeni.dev', '$2y$10$P4lv4k6xYtl4DcQDnPLuUeTFux44iezY8ZYCBTlAPcJ6NYoq2lgk.', 'adminchechit0.png', 0, '2020-06-14 17:18:05', 1),
+(35, 'test', 'test@test', '$2y$10$.GbCCeWwub8BNJHH.G9e8uybDHsYxCRsf3fbMTnJcaaCNpBhZEfti', 'APITESTING_TESTING_last_time_check_without_images11.jpg', 0, '2020-06-14 20:15:09', 2);
 
 --
 -- Indexes for dumped tables
@@ -76,6 +101,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `profile`, `islead`, `cr
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -92,13 +123,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
